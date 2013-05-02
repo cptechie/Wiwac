@@ -5,5 +5,13 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
+    
+    <item 
+        android:id="@+id/create" 
+        android:title="@string/menu_new_photo" 
+        android:icon="@drawable/camera"
+        android:showAsAction="always"
+        android:onClick="onMenuClick"
+        android:orderInCategory="1"/>
 
 </menu>
