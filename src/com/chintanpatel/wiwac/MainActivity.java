@@ -1,15 +1,27 @@
 package com.chintanpatel.wiwac;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        FragmentManager fragmentManager = getFragmentManager();
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		
+		TestFragment fragment = new TestFragment();
+		fragmentTransaction.add(R.id.fragment_container, fragment);
+		fragmentTransaction.commit();
     }
 
 
@@ -19,5 +31,16 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void onMenuClick(MenuItem item) {
+		
+	}
     
 }
