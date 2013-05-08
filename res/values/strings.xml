@@ -5,5 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_new_photo">New Photo</string>
+    <string name="description_imageview_pic_holder">Image</string>
 
 </resources>
