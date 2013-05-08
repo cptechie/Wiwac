@@ -21,12 +21,12 @@ import android.widget.Toast;
 public class CameraFragment extends Fragment implements OnClickListener {
 
 	private Uri mImageUri;
+	private View view;
 	private static final int CAMERA_EVENT = 2345;
-	private static final int IMAGE_SUCCESS = 1456;
 	 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.camera_fragment, container, false);
+        view = inflater.inflate(R.layout.camera_fragment, container, false);
         
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         File photo;
@@ -45,7 +45,7 @@ public class CameraFragment extends Fragment implements OnClickListener {
         mImageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
         //start camera intent
-        getActivity().startActivityForResult(intent, CAMERA_EVENT);
+        startActivityForResult(intent, CAMERA_EVENT);
         
         return view;
     }
@@ -69,14 +69,20 @@ public class CameraFragment extends Fragment implements OnClickListener {
 	
 	public void grabImage(ImageView imageView)
 	{
+		Log.d("CameraFragment", "Inside grabImage");
+		
 		getActivity().getContentResolver().notifyChange(mImageUri, null);
 	    ContentResolver cr = getActivity().getContentResolver();
 	    
 	    Bitmap bitmap;
 	    try
 	    {
+	    	Log.d("CameraFragment", "Inside try block to getBitmap");
+	    	
 	        bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, mImageUri);
 	        imageView.setImageBitmap(bitmap);
+	        
+	        Log.d("CameraFragment", "Image Set");
 	    }
 	    catch (Exception e)
 	    {
@@ -90,12 +96,17 @@ public class CameraFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent)
 	{
-	    if(requestCode==CAMERA_EVENT && resultCode==IMAGE_SUCCESS)
+		Log.d("CameraFragment", "Inside onActivityResult");
+		
+	    if(requestCode==CAMERA_EVENT)
 	    {
-	       //ImageView imageView;
-	       //... some code to inflate/create/find appropriate ImageView to place grabbed image
-	       //this.grabImage(imageView);
+	    	Log.d("CameraFragment", "Inside requestCode==CAMERA_EVENT");
+	    	
+			ImageView imageView = (ImageView) view.findViewById(R.id.imageview_pic_holder);
+			//... some code to inflate/create/find appropriate ImageView to place grabbed image
+			this.grabImage(imageView);
 	    }
+	    
 	    super.onActivityResult(requestCode, resultCode, intent);
 	}
 
