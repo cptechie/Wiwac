@@ -21,7 +21,7 @@ public class MainActivity extends Activity implements OnClickListener {
         FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		
-		TestFragment fragment = new TestFragment();
+		GalleryFragment fragment = new GalleryFragment();
 		fragmentTransaction.add(R.id.fragment_container, fragment);
 		fragmentTransaction.commit();
     }
