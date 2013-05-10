@@ -3,6 +3,7 @@ package com.final_proj.patel;
 import java.io.File;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -14,19 +15,20 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.chintanpatel.wiwac.R;
 
 public class GalleryFragment extends Fragment implements OnClickListener {
 
 	private String path;
+	BitmapFactory.Options options;
 	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,19 +43,16 @@ public class GalleryFragment extends Fragment implements OnClickListener {
     public void onStart() {
     	File[] images = (new File(path)).listFiles();
         
-        ImageView imgView = new ImageView(getActivity());
-        
-        BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inSampleSize=4;
-		Bitmap bmp = BitmapFactory.decodeFile(images[0].getPath(), options);
-        
-		imgView.setImageBitmap(getRoundedCornerBitmap(bmp));
+        options = new BitmapFactory.Options();
+		options.inSampleSize=8;
 		
-		LinearLayout layout = (LinearLayout) getView().findViewById(R.id.gallery);
-		layout.addView(imgView);
-        
-        Log.d("GalleryFragment", "ImageCreated with path: " + images[0].getPath());
-        
+		ImageAdapter adapter = new ImageAdapter(getActivity());
+		((ListView) getView().findViewById(R.id.gallery_listview)).setAdapter(adapter);
+		
+		for(File image : images){
+			adapter.add(new ImageItem(getActivity(), image.getPath()));
+		}
+ 
     	super.onStart();
     }
 
@@ -84,5 +83,39 @@ public class GalleryFragment extends Fragment implements OnClickListener {
 	 
 	    return output;
 	  }
+	
+	class ImageItem {
+		final String path;
+
+		ImageItem(Context c, String tempPath) {
+			path = tempPath;
+		}
+	}
+
+	class ImageAdapter extends ArrayAdapter<ImageItem> {
+		private final LayoutInflater mInflater;
+
+		public ImageAdapter(Context context) {
+			super(context, 0);
+			mInflater = LayoutInflater.from(getContext());
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewGroup view = null;
+
+			if (convertView == null) {
+				view = (ViewGroup) mInflater.inflate(R.layout.rounded_image, parent, false);
+			} else {
+				view = (ViewGroup) convertView;
+			}
+
+			ImageItem item = getItem(position);
+
+			((ImageView) view.findViewById(R.id.rounded_image)).setImageBitmap(getRoundedCornerBitmap(BitmapFactory.decodeFile(item.path, options)));
+
+			return view;
+		}
+	}
 	
 }
