@@ -1,13 +1,13 @@
 package com.final_proj.patel;
 
-import com.chintanpatel.wiwac.R;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+
+import com.chintanpatel.wiwac.R;
 
 public class TestFragment extends Fragment implements OnClickListener {
 

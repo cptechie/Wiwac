@@ -1,7 +1,5 @@
 package com.final_proj.patel;
 
-import com.chintanpatel.wiwac.R;
-
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -10,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.chintanpatel.wiwac.R;
 
 public class MainActivity extends Activity implements OnClickListener {
 
