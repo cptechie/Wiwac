@@ -7,5 +7,6 @@
     <string name="menu_new_photo">New Photo</string>
     <string name="description_imageview_pic_holder">Image</string>
     <string name="developer_info_string">Developer: Chintan Patel</string>
+    <string name="newshot_text">Take another photo</string>
 
 </resources>
