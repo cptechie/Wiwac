@@ -72,7 +72,7 @@ public class GalleryFragment extends Fragment implements OnClickListener {
 
 			ImageItem item = getItem(position);
 
-			((ImageView) view.findViewById(R.id.rounded_image)).setImageBitmap(HelperClass.getBitmap(item.path));
+			((ImageView) view.findViewById(R.id.rounded_image)).setImageBitmap(HelperClass.getRoundedBitmap(item.path));
 
 			return view;
 		}
