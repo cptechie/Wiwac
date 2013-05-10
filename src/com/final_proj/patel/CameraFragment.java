@@ -30,12 +30,9 @@ public class CameraFragment extends Fragment implements OnClickListener {
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.camera_fragment, container, false);
-        
-        
-        
+
         startCamera(); 
 
-        
         return view;
     }
 	
@@ -80,9 +77,10 @@ public class CameraFragment extends Fragment implements OnClickListener {
 	{
 		Log.d("CameraFragment", "Inside onActivityResult");
 		
-	    if(requestCode==CAMERA_EVENT)
+	    if(requestCode == CAMERA_EVENT && resultCode == -1)
 	    {
-	    	Log.d("CameraFragment", "Inside requestCode==CAMERA_EVENT");
+	    	Log.d("CameraFragment", "Inside requestCode == CAMERA_EVENT");
+	    	Log.d("CameraFragment", "resultCode: " + resultCode);
 	    	Log.d("CameraFragment", "ImageLocation: " + mImageUri.toString());
 			ImageView imageView = (ImageView) view.findViewById(R.id.imageview_pic_holder);
 			
