@@ -31,8 +31,8 @@ public class GalleryFragment extends Fragment implements OnClickListener {
 		ImageAdapter adapter = new ImageAdapter(getActivity());
 		((ListView) getView().findViewById(R.id.gallery_listview)).setAdapter(adapter);
 		
-		for(File image : images){
-			adapter.add(new ImageItem(getActivity(), image.getPath()));
+		for(int x = images.length - 1; x >= 0; x--){
+			adapter.add(new ImageItem(getActivity(), images[x].getPath()));
 		}
  
     	super.onStart();
