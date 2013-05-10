@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.chintanpatel.wiwac.R;
@@ -30,11 +31,22 @@ public class CameraFragment extends Fragment implements OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.camera_fragment, container, false);
         
+        
+        
         startCamera(); 
 
         
         return view;
     }
+	
+	@Override
+	public void onStart() {
+		
+		Button button = (Button) getView().findViewById(R.id.newShot);
+        button.setOnClickListener(this);
+        
+		super.onStart();
+	}
 
 	public void startCamera() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -51,7 +63,14 @@ public class CameraFragment extends Fragment implements OnClickListener {
     
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		
+		switch(v.getId()){
+			case R.id.newShot:
+				startCamera();
+				break;
+		}
+		
+		Log.d("CameraFragment", "Button Pressed");
 		
 	}
 
