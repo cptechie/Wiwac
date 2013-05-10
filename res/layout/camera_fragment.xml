@@ -7,23 +7,23 @@
 
     <ImageView
         android:id="@+id/imageview_pic_holder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:layout_margin="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/description_imageview_pic_holder" />
 
     <Button
         android:id="@+id/newShot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/green.light"
         android:textColor="@android:color/white"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:textStyle="bold"
+        android:textStyle="normal"
+        android:textSize="20sp"
         android:text="@string/newshot_text" />
     
 </RelativeLayout>
