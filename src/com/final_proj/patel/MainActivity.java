@@ -44,9 +44,17 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onMenuClick(MenuItem item) {
 		switch(item.getItemId()){
 			case R.id.create:
-				FragmentTransaction ft = getFragmentManager().beginTransaction();
-				ft.replace(R.id.fragment_container, new CameraFragment());
-				ft.commit(); 
+				
+				if(getFragmentManager().findFragmentById(R.id.fragment_container).getClass() == CameraFragment.class){
+					((CameraFragment) getFragmentManager().findFragmentById(R.id.fragment_container)).startCamera();
+				}
+				
+				else{
+					FragmentTransaction ft = getFragmentManager().beginTransaction();
+					ft.replace(R.id.fragment_container, new CameraFragment());
+					ft.addToBackStack(null);
+					ft.commit(); 
+				}
 
 				break;
 		}
