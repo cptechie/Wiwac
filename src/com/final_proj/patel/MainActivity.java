@@ -1,4 +1,6 @@
-package com.chintanpatel.wiwac;
+package com.final_proj.patel;
+
+import com.chintanpatel.wiwac.R;
 
 import android.app.Activity;
 import android.app.FragmentManager;
