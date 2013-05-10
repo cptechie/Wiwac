@@ -36,11 +36,19 @@ public class HelperClass {
 	    return output;
 	  }
 	
-	public static Bitmap getBitmap(String path) {
+	public static Bitmap getRoundedBitmap(String path) {
 		
 		BitmapFactory.Options options =  new BitmapFactory.Options();
 		options.inSampleSize=8;
 	 
 	    return getRoundedCornerBitmap(BitmapFactory.decodeFile(path, options));
-	  }
+	}
+	
+	public static Bitmap getBitmap(String path) {
+		
+		BitmapFactory.Options options =  new BitmapFactory.Options();
+		options.inSampleSize=8;
+	 
+	    return BitmapFactory.decodeFile(path, options);
+	}
 }
