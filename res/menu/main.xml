@@ -13,5 +13,10 @@
         android:showAsAction="always"
         android:onClick="onMenuClick"
         android:orderInCategory="1"/>
+    
+    <item 
+        android:id="@+id/developer_code"
+        android:title="@string/developer_info_string"
+        android:orderInCategory="100"/>
 
 </menu>
