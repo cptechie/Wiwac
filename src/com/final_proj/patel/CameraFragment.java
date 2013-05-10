@@ -5,7 +5,6 @@ import java.io.File;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -68,9 +67,7 @@ public class CameraFragment extends Fragment implements OnClickListener {
 	    	Log.d("CameraFragment", "ImageLocation: " + mImageUri.toString());
 			ImageView imageView = (ImageView) view.findViewById(R.id.imageview_pic_holder);
 			
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inSampleSize=16;
-			Bitmap bmp=BitmapFactory.decodeFile(mImageUri.getPath(), options);
+			Bitmap bmp = HelperClass.getBitmap(mImageUri.getPath());
 			
 			imageView.setImageBitmap(bmp);
 	    }
