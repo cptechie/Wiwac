@@ -51,6 +51,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				
 				else{
 					FragmentTransaction ft = getFragmentManager().beginTransaction();
+					ft.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out, android.R.animator.fade_in, android.R.animator.fade_out);
 					ft.replace(R.id.fragment_container, new CameraFragment());
 					ft.addToBackStack(null);
 					ft.commit(); 
